@@ -1,0 +1,21 @@
+.user_course_button {
+  align-items: center;
+  background: #333333;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 12px;
+  height: 15px;
+  justify-content: center;
+  line-height: 0;
+  margin-left: 8px;
+  padding: 0;
+  width: 15px;
+}
+
+.card {
+  width: 15rem;
+  margin: 5px;
+}
