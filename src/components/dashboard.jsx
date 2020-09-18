@@ -10,6 +10,7 @@ class DashBoard extends Component {
     course_input: "",
     takeable_c: [],
     seen: false,
+    preq_pop: false,
   };
 
   render() {
@@ -21,7 +22,7 @@ class DashBoard extends Component {
             <input
               type="text"
               name="search_input"
-              placeholder="BIOL 225"
+              placeholder="CS136"
               onChange={this.handleChange}
               onKeyDown={this.courseSearch}
               ref={(input) => (this.searchInput = input)}
@@ -32,6 +33,19 @@ class DashBoard extends Component {
               value="Search"
               className="btn btn-secondary btn-sm ml-1"
             />
+
+            {this.state.preq_pop ? (
+              <PopUp
+                key="preq"
+                content={
+                  <div>
+                    <h2>{this.props.preqResult.title}</h2>
+                    <div>{this.props.preqResult.content}</div>
+                  </div>
+                }
+                toggle={this.togglePreqPop}
+              />
+            ) : null}
           </div>
 
           <div>
@@ -68,6 +82,7 @@ class DashBoard extends Component {
 
           {this.state.seen ? (
             <PopUp
+              key="subject_filters"
               content={
                 <CheckBox
                   list={subject_names}
@@ -132,6 +147,12 @@ class DashBoard extends Component {
     });
   };
 
+  togglePreqPop = () => {
+    this.setState({
+      preq_pop: !this.state.preq_pop,
+    });
+  };
+
   // button click for adding user Course
   addCourseClick = (e) => {
     this.addCourse({
@@ -168,7 +189,10 @@ class DashBoard extends Component {
     const val = e.target.value.toUpperCase();
     if ((e.key === "Enter" && val) || e.key === "click") {
       this.searchInput.value = null;
-      // this.findCoursePreq();
+      val === ""
+        ? this.props.onPreqSearch("CS136")
+        : this.props.onPreqSearch(val);
+      this.togglePreqPop();
     }
   };
 

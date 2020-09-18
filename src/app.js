@@ -18,6 +18,7 @@ class App extends Component {
       program_filter: [], // "enginner" "Bio student" ...
       takeable_c: [],
       user_courses: ["CS100"],
+      preq_result: "",
     };
   }
 
@@ -28,6 +29,8 @@ class App extends Component {
         <main role="main" className="container">
           <DashBoard
             key="dash"
+            onPreqSearch={this.findCoursePreq}
+            preqResult={this.state.preq_result}
             onCourseSearch={this.findTakeableCourse}
             onRemoveCourse={this.removeCourse}
             onClearCourse={this.clearCourse}
@@ -47,8 +50,39 @@ class App extends Component {
     );
   }
 
-  findCoursePreq = () => {
-    console.log("findCoursePreq....");
+  findCoursePreq = (course_name) => {
+    console.log("findCoursePreq....", course_name);
+    let preq_found = "";
+
+    all_subjects.forEach((subject) => {
+      const subject_courses = Object.values(subject)[0];
+      if (subject_courses.length > 0) {
+        subject_courses.forEach((course) => {
+          const course_id = Object.keys(course)[0];
+          const course_info = Object.values(course)[0];
+          const preq = course_info.preq_note;
+
+          if (course_id === course_name) {
+            preq_found = preq;
+          }
+        });
+      }
+    });
+
+    if (preq_found.length > 0) {
+      this.setState({
+        preq_result: {
+          title: course_name,
+          content: preq_found,
+        },
+      });
+    } else
+      this.setState({
+        preq_result: {
+          title: course_name,
+          content: "No Prerequisite this course",
+        },
+      });
   };
 
   // find Takeable Courses vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
