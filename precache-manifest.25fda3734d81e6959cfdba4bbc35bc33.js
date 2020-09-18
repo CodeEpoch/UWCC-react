@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9236f34c6cf8edcb67570e5efe99a083",
+    "revision": "fb93fb918bc7e3ed640ca0a2d7eba82d",
     "url": "/UWCC-react/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/UWCC-react/static/css/2.8aa5a7f8.chunk.css"
   },
   {
-    "revision": "ee64b5eedf7d3fe7cfe2",
+    "revision": "a63751acb5987eeb2fd8",
     "url": "/UWCC-react/static/css/main.f76d161d.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/UWCC-react/static/js/2.cb77dd33.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ee64b5eedf7d3fe7cfe2",
-    "url": "/UWCC-react/static/js/main.e47c6627.chunk.js"
+    "revision": "a63751acb5987eeb2fd8",
+    "url": "/UWCC-react/static/js/main.25006b35.chunk.js"
   },
   {
     "revision": "a9ef92095b2cf746a05b",
