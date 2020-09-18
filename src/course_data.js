@@ -102,7 +102,6 @@ import NANO from "./course_data_json/NANO.json";
 import NATST from "./course_data_json/NATST.json";
 import NE from "./course_data_json/NE.json";
 import NES from "./course_data_json/NES.json";
-import operative from "./course_data_json/operative.json";
 import OPTOM from "./course_data_json/OPTOM.json";
 import PACS from "./course_data_json/PACS.json";
 import PD from "./course_data_json/PD.json";
@@ -259,7 +258,6 @@ const all_subjects = [
   { NATST },
   { NE },
   { NES },
-  { operative },
   { OPTOM },
   { PACS },
   { PD },

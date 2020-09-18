@@ -13,6 +13,7 @@ function rewrite_txt() {
         flag: "r",
       })
     );
+
     let key_list = [];
     let keep_list = "[";
     Object.values(subject).forEach((course) => {
@@ -22,11 +23,11 @@ function rewrite_txt() {
         keep = JSON.stringify(course) + ",";
         keep_list += keep;
       } else {
-        console.log("errrr", o);
+        console.log("repeated:", ck);
       }
     });
 
-    keep_list += keep_list.slice(0, -1) + "]";
+    keep_list = keep_list.slice(0, -1) + "]";
 
     if (keep_list.length > 2) {
       let new_file_name = file.slice(0, -3) + "json";
@@ -41,21 +42,37 @@ function rewrite_txt() {
 
 // log file import
 function logfile() {
+  file_name = "course_data.js";
   let list_of_files = "const all_subjects = [";
-  fs.writeFileSync(`import_data.js`, "");
+  fs.writeFileSync(`${file_name}`, "");
   fs.readdirSync(dir2).forEach((file) => {
     let imp_name = file.slice(0, -5);
     list_of_files += `{${imp_name}}, `;
     let imp = `import ${imp_name} from "${dir2}${file}";`;
-    fs.appendFileSync(`import_data.js`, imp, function (err) {
+    fs.appendFileSync(`${file_name}`, imp, function (err) {
       if (err) {
         return console.error(err);
       }
     });
   });
   list_of_files += "]; export { all_subjects };";
-  fs.appendFileSync(`import_data.js`, list_of_files);
+  fs.appendFileSync(`${file_name}`, list_of_files);
 }
 
-rewrite_txt();
+function log_subjects() {
+  file_name = "subject_names.js";
+  export_name = "subject_names";
+
+  let list_of_subjects = `const ${export_name} = [`;
+  fs.writeFileSync(`${file_name}`, "");
+  fs.readdirSync(dir2).forEach((file) => {
+    let subj_name = file.slice(0, -5);
+    list_of_subjects += `"${subj_name}", `;
+  });
+  list_of_subjects += `]; export { ${export_name} };`;
+  fs.appendFileSync(`${file_name}`, list_of_subjects);
+}
+
+// rewrite_txt();
 // logfile();
+// log_subjects();

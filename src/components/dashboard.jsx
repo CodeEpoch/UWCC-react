@@ -1,18 +1,16 @@
-import React, { Component } from "react"; //imrc
+import React, { Component } from "react";
+import CheckBox from "./checkbox.jsx";
+import { subject_names } from "../subject_names.js";
+import PopUp from "./popup";
 import "../app.css";
-//cc
+
 class DashBoard extends Component {
   state = {
-    count: -1,
     search_input: "",
     course_input: "",
     takeable_c: [],
+    seen: false,
   };
-
-  // constructor() {
-  //   super();
-  //   this.search = this.search.bind(this);
-  // }
 
   render() {
     return (
@@ -40,7 +38,7 @@ class DashBoard extends Component {
             <input
               type="text"
               name="course_input"
-              placeholder="Enter your courses"
+              placeholder="Enter your course"
               onChange={this.handleChange}
               onKeyDown={this.addCourse}
               ref={(input) => (this.userCourseInput = input)}
@@ -48,7 +46,7 @@ class DashBoard extends Component {
             <input
               type="button"
               onClick={this.addCourseClick}
-              value="Add course(s) taken"
+              value="Add course taken"
               className="btn btn-secondary btn-sm ml-1"
             />
           </div>
@@ -56,6 +54,42 @@ class DashBoard extends Component {
 
         {/* Show Courses taken */}
         {this.renderCourseTaken()}
+
+        <div>
+          <button
+            className="btn btn-secondary btn-sm mb-1"
+            onClick={this.togglePop}
+          >
+            Subject Filter
+          </button>
+
+          {/* Show Filter subjects taken */}
+          {this.renderSubjectFilter()}
+
+          {this.state.seen ? (
+            <PopUp
+              content={
+                <CheckBox
+                  list={subject_names}
+                  checked={this.props.subjectFilter}
+                  onChange={this.updateCheckbox}
+                />
+              }
+              toggle={this.togglePop}
+            />
+          ) : null}
+        </div>
+
+        <label>
+          Offset:
+          <input
+            name="offset"
+            type="number"
+            value={this.props.offset}
+            onChange={this.handleChange2}
+          />
+        </label>
+
         <button
           onClick={this.props.onCourseSearch}
           className="btn btn-secondary btn-block m-2 "
@@ -66,12 +100,35 @@ class DashBoard extends Component {
     );
   }
 
-  // handle change for in the two user input
+  // handle change for the search and course input
   handleChange = (e) => {
     const value = e.target.value;
     this.setState({
       ...this.state,
       [e.target.name]: value,
+    });
+  };
+
+  // handle change for subject filter and offset
+  handleChange2 = (event) => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+
+    if (name === "offset") {
+      value < 0 ? (target.value = 0) : this.props.offsetChange(value);
+    }
+  };
+
+  //checkbox
+  updateCheckbox = (item) => {
+    this.props.updateSubject(item);
+  };
+
+  //popup
+  togglePop = () => {
+    this.setState({
+      seen: !this.state.seen,
     });
   };
 
@@ -116,7 +173,7 @@ class DashBoard extends Component {
   };
 
   renderCourseTaken() {
-    if (this.props.userCourses.length === 0) return <p> </p>;
+    if (this.props.userCourses.length === 0) return;
     return (
       <div>
         <span>Courses taken: </span>
@@ -141,6 +198,34 @@ class DashBoard extends Component {
           Clear
         </button>
       </div>
+    );
+  }
+
+  renderSubjectFilter() {
+    if (this.props.subjectFilter.length === 0) return;
+    return (
+      <span>
+        {this.props.subjectFilter.map((course, i) => (
+          <span className="badge badge-primary ml-1" key={course}>
+            {course}
+            <button
+              type="button"
+              onClick={() => {
+                this.props.updateSubject(i);
+              }}
+              className="user_course_button"
+            >
+              x
+            </button>
+          </span>
+        ))}
+        <button
+          className="btn btn-danger btn-sm m-1"
+          onClick={this.props.onClearSubjectFilter}
+        >
+          Clear
+        </button>
+      </span>
     );
   }
 }
