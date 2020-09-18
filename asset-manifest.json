@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/UWCC-react/static/css/main.f76d161d.chunk.css",
+    "main.css": "/UWCC-react/static/css/main.f6794665.chunk.css",
     "main.js": "/UWCC-react/static/js/main.25006b35.chunk.js",
     "main.js.map": "/UWCC-react/static/js/main.25006b35.chunk.js.map",
     "runtime-main.js": "/UWCC-react/static/js/runtime-main.3fb556b0.js",
@@ -9,17 +9,17 @@
     "static/js/2.cb77dd33.chunk.js": "/UWCC-react/static/js/2.cb77dd33.chunk.js",
     "static/js/2.cb77dd33.chunk.js.map": "/UWCC-react/static/js/2.cb77dd33.chunk.js.map",
     "index.html": "/UWCC-react/index.html",
-    "precache-manifest.25fda3734d81e6959cfdba4bbc35bc33.js": "/UWCC-react/precache-manifest.25fda3734d81e6959cfdba4bbc35bc33.js",
+    "precache-manifest.86e708d421a1556d117c54105c02ce50.js": "/UWCC-react/precache-manifest.86e708d421a1556d117c54105c02ce50.js",
     "service-worker.js": "/UWCC-react/service-worker.js",
     "static/css/2.8aa5a7f8.chunk.css.map": "/UWCC-react/static/css/2.8aa5a7f8.chunk.css.map",
-    "static/css/main.f76d161d.chunk.css.map": "/UWCC-react/static/css/main.f76d161d.chunk.css.map",
+    "static/css/main.f6794665.chunk.css.map": "/UWCC-react/static/css/main.f6794665.chunk.css.map",
     "static/js/2.cb77dd33.chunk.js.LICENSE.txt": "/UWCC-react/static/js/2.cb77dd33.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3fb556b0.js",
     "static/css/2.8aa5a7f8.chunk.css",
     "static/js/2.cb77dd33.chunk.js",
-    "static/css/main.f76d161d.chunk.css",
+    "static/css/main.f6794665.chunk.css",
     "static/js/main.25006b35.chunk.js"
   ]
 }
