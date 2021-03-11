@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class NavBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-dark bg-primary">
-        <a className="navbar-brand" href="home">
+        <Link className="navbar-brand" to="/">
           UWCC - Beta
-        </a>
+        </Link>
+        <Link className="navbar-brand" to="/plan">
+          Coure planing
+        </Link>
+        <Link className="navbar-brand" to="/about">
+          About
+        </Link>
       </nav>
     );
   }

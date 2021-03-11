@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import NavBar from "./components/narbar";
-import DashBoard from "./components/dashboard.jsx";
-import Box from "./components/box.jsx";
+import Plan from "./components/plan";
+import About from "./components/about";
+import DashBoard from "./components/dashboard";
+import Box from "./components/box";
 import { all_subjects } from "./course_data.js";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./app.css";
 
 class App extends Component {
@@ -25,33 +27,45 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar />
-        <main role="main" className="container">
-          <DashBoard
-            key="dash"
-            onPreqSearch={this.findCoursePreq}
-            preqResult={this.state.preq_result}
-            onCourseSearch={this.findTakeableCourse}
-            onRemoveCourse={this.removeCourse}
-            onClearCourse={this.clearCourse}
-            onEnterCourse={this.enterCourse}
-            userCourses={this.state.user_courses}
-            offsetChange={this.changeOffset}
-            offset={this.state.offset}
-            updateSubject={this.updateSubject}
-            onClearSubjectFilter={this.clearSubjectFilter}
-            subjectFilter={this.state.subject_filter}
-          />
+        <Router>
+          <NavBar />
 
-          {/* show takeable courses */}
-          <div className="row">{this.renderCourseFound()}</div>
-        </main>
+          <Switch>
+            <Route path="/plan">
+              <Plan />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <main role="main" className="container">
+                <DashBoard
+                  key="dash"
+                  onPreqSearch={this.findCoursePreq}
+                  preqResult={this.state.preq_result}
+                  onCourseSearch={this.findTakeableCourse}
+                  onRemoveCourse={this.removeCourse}
+                  onClearCourse={this.clearCourse}
+                  onEnterCourse={this.enterCourse}
+                  userCourses={this.state.user_courses}
+                  offsetChange={this.changeOffset}
+                  offset={this.state.offset}
+                  updateSubject={this.updateSubject}
+                  onClearSubjectFilter={this.clearSubjectFilter}
+                  subjectFilter={this.state.subject_filter}
+                />
+
+                {/* show takeable courses */}
+                <div className="row">{this.renderCourseFound()}</div>
+              </main>
+            </Route>
+          </Switch>
+        </Router>
       </React.Fragment>
     );
   }
 
   findCoursePreq = (course_name) => {
-    console.log("findCoursePreq....", course_name);
     let preq_found = "";
 
     all_subjects.forEach((subject) => {
