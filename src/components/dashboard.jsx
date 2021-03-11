@@ -9,8 +9,8 @@ class DashBoard extends Component {
     search_input: "",
     course_input: "",
     takeable_c: [],
-    seen: false,
-    preq_pop: false,
+    show_subject_filters: false,
+    show_preq_pop: false,
   };
 
   render() {
@@ -34,7 +34,7 @@ class DashBoard extends Component {
               className="btn btn-secondary btn-sm ml-1"
             />
 
-            {this.state.preq_pop ? (
+            {this.state.show_preq_pop ? (
               <PopUp
                 key="preq"
                 content={
@@ -80,7 +80,7 @@ class DashBoard extends Component {
           {/* Show Filter subjects taken */}
           {this.renderSubjectFilter()}
 
-          {this.state.seen ? (
+          {this.state.show_subject_filters ? (
             <PopUp
               key="subject_filters"
               content={
@@ -143,13 +143,13 @@ class DashBoard extends Component {
   //popup
   togglePop = () => {
     this.setState({
-      seen: !this.state.seen,
+      show_subject_filters: !this.state.show_subject_filters,
     });
   };
 
   togglePreqPop = () => {
     this.setState({
-      preq_pop: !this.state.preq_pop,
+      show_preq_pop: !this.state.show_preq_pop,
     });
   };
 
